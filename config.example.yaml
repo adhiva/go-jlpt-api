@@ -1,0 +1,19 @@
+app:
+  env: local
+  hostname: hostname
+  port: port
+  timezone: TimeZone
+  baseurl: http://127.0.0.1/
+  apikeyduration: 30
+  csrfexpireduration: 10
+  basepath: api
+  
+db:
+  driver: mysql
+  host: localhost
+  port: 3306
+  name: db_name
+  user: root
+  password: root
+  locale: Asia/Jakarta
+  maxopenconns: 100
