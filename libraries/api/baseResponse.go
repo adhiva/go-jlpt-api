@@ -7,17 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var statusCode = 200
-
-// SetStatusCode -- Set status code
-func SetStatusCode(statCode int) int {
-	statusCode := statCode
-	return statusCode
-}
-
 // ResponseJSON -- set response to json format
 func ResponseJSON(c *gin.Context, data interface{}) {
-	c.JSON(statusCode, data)
+	c.JSON(http.StatusOK, data)
 	return
 }
 
@@ -31,8 +23,7 @@ func ResponseCreated(c *gin.Context, message string) {
 	if message == "" {
 		message = "Resource Created"
 	}
-	statusCode := SetStatusCode(201)
-	c.JSON(statusCode, gin.H{"message": message})
+	c.JSON(http.StatusCreated, gin.H{"message": message})
 	return
 }
 
@@ -41,8 +32,7 @@ func ResponseUpdated(c *gin.Context, message string) {
 	if message == "" {
 		message = "Resource Updated"
 	}
-	statusCode := SetStatusCode(200)
-	c.JSON(statusCode, gin.H{"message": message})
+	c.JSON(http.StatusAccepted, gin.H{"message": message})
 	return
 }
 
@@ -65,8 +55,7 @@ func ResponseDeleted(c *gin.Context, message string) {
 	if message == "" {
 		message = "Resource Deleted"
 	}
-	statusCode := SetStatusCode(200)
-	c.JSON(statusCode, gin.H{"message": message})
+	c.JSON(http.StatusAccepted, gin.H{"message": message})
 	return
 }
 
@@ -87,8 +76,7 @@ func ResponseUnauthorized(c *gin.Context, message string) {
 	if message == "" {
 		message = "Unauthorized"
 	}
-	statusCode := SetStatusCode(401)
-	c.JSON(statusCode, gin.H{"errors": message})
+	c.JSON(http.StatusUnauthorized, gin.H{"errors": message})
 	return
 }
 
@@ -97,8 +85,7 @@ func ResponseNotFound(c *gin.Context, message string) {
 	if message == "" {
 		message = "Resource Not Found"
 	}
-	statusCode := SetStatusCode(404)
-	c.JSON(statusCode, gin.H{"errors": message})
+	c.JSON(http.StatusNotFound, gin.H{"errors": message})
 	return
 }
 
@@ -107,8 +94,8 @@ func ResponseMethodNotAllowed(c *gin.Context, message string) {
 	if message == "" {
 		message = "Method Not Allowed"
 	}
-	statusCode := SetStatusCode(405)
-	c.JSON(statusCode, gin.H{"errors": message})
+
+	c.JSON(http.StatusMethodNotAllowed, gin.H{"errors": message})
 	return
 }
 
@@ -124,12 +111,11 @@ func ResponseRedirect(c *gin.Context, url string) {
 func ResponseAttachment(c *gin.Context, contentType, filename string, b *bytes.Buffer) {
 	c.Header("Content-Description", "Attachment")
 	c.Header("Content-Disposition", "attachment;filename="+filename)
-	c.Data(statusCode, contentType, b.Bytes())
+	c.Data(http.StatusOK, contentType, b.Bytes())
 	return
 }
 
 func ResponseXML(c *gin.Context, statusCode int, data interface{}) {
-	statusCode = SetStatusCode(statusCode)
 	c.XML(statusCode, data)
 	return
 }

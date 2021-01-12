@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 
+	AdminRepository "go-jlpt-n5/app/admin/repository"
+	AdminUseCase "go-jlpt-n5/app/admin/usecase"
 	HCRepository "go-jlpt-n5/app/healthcheck/repository"
 	HCUseCase "go-jlpt-n5/app/healthcheck/usecase"
 	"go-jlpt-n5/config"
@@ -32,7 +34,10 @@ func main() {
 	db := gorm.MysqlConn()
 	hcr := HCRepository.NewHealthCheckRepository(db)
 	hcu := HCUseCase.NewHealthCheckUsecase(hcr)
+	ar := AdminRepository.NewAdminRepository(db)
+	auc := AdminUseCase.NewAdminUsecase(ar)
 	routes.HealthCheckHttpHandler(r, hcu)
+	routes.AdminHttpHandler(r, auc)
 	// Global middleware
 	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
 	// By default gin.DefaultWriter = os.Stdout
