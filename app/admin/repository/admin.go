@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"fmt"
 	AdminInterface "go-jlpt-n5/app/admin"
 	"go-jlpt-n5/models"
 
@@ -42,7 +41,10 @@ func (m *AdminRepository) Get() ([]*models.Admin, error) {
 	}
 	tx.Commit()
 	txCount.Commit()
-	fmt.Println("Check Admin : ", admins)
 
 	return admins, nil
+}
+
+func (m *AdminRepository) Store(*models.Admin) error {
+	return nil
 }

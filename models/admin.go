@@ -14,6 +14,7 @@ type Admin struct {
 	PhoneNumberCountryCode string    `json:"phone_number_country_code"`
 	PhoneNumber            string    `json:"phone_number"`
 	Country                string    `json:"country"`
+	Active                 bool      `json:"active"`
 	CreatedAt              time.Time `json:"created_at"`
 	UpdatedAt              time.Time `json:"updated_at"`
 }

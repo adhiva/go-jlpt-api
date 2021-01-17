@@ -1,3 +1,0 @@
-ALTER TABLE `admins` 
-ADD COLUMN `active` SMALLINT(1) NOT NULL DEFAULT 1 AFTER `country`,
-ADD COLUMN `token` VARCHAR(255) NULL AFTER `email`;

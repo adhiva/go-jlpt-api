@@ -3,6 +3,7 @@ package usecase
 import (
 	AdminInterface "go-jlpt-n5/app/admin"
 	"go-jlpt-n5/models"
+	"go-jlpt-n5/request"
 )
 
 type AdminUsecase struct {
@@ -28,6 +29,6 @@ func (a *AdminUsecase) Get() ([]*models.Admin, error) {
 	return admins, nil
 }
 
-func (a *AdminUsecase) Store() (*models.Admin, error) {
+func (a *AdminUsecase) Store(req *request.Admin) (*models.Admin, error) {
 	return &models.Admin{}, nil
 }

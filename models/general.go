@@ -1,5 +1,7 @@
 package models
 
+import "golang.org/x/crypto/bcrypt"
+
 type Meta struct {
 	Pagination *Pagination `json:"pagination"`
 }
@@ -10,4 +12,8 @@ type Pagination struct {
 	PerPage     int `json:"per_page"`
 	CurrentPage int `json:"current_page"`
 	TotalPages  int `json:"total_pages"`
+}
+
+func Hash(password string) ([]byte, error) {
+	return bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 }

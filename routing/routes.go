@@ -35,6 +35,7 @@ func AdminHttpHandler(r *gin.Engine, auc admin.IAdminUsecase) {
 	}
 	route := r.Group(basePath)
 	route.GET("/admins", handler.GetAdmin)
+	route.POST("/admins", handler.StoreAdmin)
 }
 
 func PermissionHttpHandler(r *gin.Engine, us healthcheck.IHealthCheckUsecase) {
