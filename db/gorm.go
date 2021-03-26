@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"go-jlpt-n5/config"
 	"log"
-	"net/url"
 	"os"
 	"time"
 
@@ -30,7 +29,7 @@ func init() {
 
 func setupMySQLConnection() {
 	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true&loc=%s&charset=utf8mb4", dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name, url.QueryEscape(dbConfig.Locale))
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true&charset=utf8mb4", dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name)
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
