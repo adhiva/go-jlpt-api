@@ -4,8 +4,7 @@ on:
     branches: [ master ]
 
 jobs: 
-  job_one:
-    name: My Testing Deployement
+  build: 
     runs-on: ubuntu-latest
     steps:
     - name: Testing Auto Deployment Go to VPS inside Digital Ocean
